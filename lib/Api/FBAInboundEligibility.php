@@ -35,7 +35,7 @@ use InvalidArgumentException;
  *
  * @author   Stefan Neuhaus / ClouSale
  */
-class FBAInboundEligibilityApi
+class FbaInboundEligibilityApi
 {
     use SellingPartnerApiRequest;
 
