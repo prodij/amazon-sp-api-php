@@ -86,8 +86,6 @@ trait SellingPartnerApiRequest
             $headers,
             $amazonHeader
         );
-        var_dump($amazonHeader, $headers,$query);
-        die();
 
         return new Request(
             $method,
