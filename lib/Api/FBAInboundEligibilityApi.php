@@ -78,9 +78,9 @@ class FbaInboundEligibilityApi
      *
      * @return \ClouSale\AmazonSellingPartnerAPI\Models\FbaInboundEligibility\ItemEligibilityPreviewResponse
      */
-    public function getItemEligibilityPreview($marketplace_id, $asin)
+    public function getItemEligibilityPreview($marketplace_id, $asin, $program)
     {
-        list($response) = $this->getItemEligibilityPreviewWithHttpInfo($marketplace_id, $asin);
+        list($response) = $this->getItemEligibilityPreviewWithHttpInfo($marketplace_id, $asin, $program);
 
         return $response;
     }
@@ -96,9 +96,9 @@ class FbaInboundEligibilityApi
      *
      * @return array of \ClouSale\AmazonSellingPartnerAPI\Models\FbaInboundEligibility\GetItemEligibilityPreviewResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getItemEligibilityPreviewWithHttpInfo($marketplace_id, $asin)
+    public function getItemEligibilityPreviewWithHttpInfo($marketplace_id, $asin, $program)
     {
-        $request = $this->getItemEligibilityPreviewRequest($marketplace_id, $asin);
+        $request = $this->getItemEligibilityPreviewRequest($marketplace_id, $asin, $program);
 
         return $this->sendRequest($request, GetItemEligibilityPreviewResponse::class);
     }
@@ -113,9 +113,9 @@ class FbaInboundEligibilityApi
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getItemEligibilityPreviewAsync($marketplace_id, $asin)
+    public function getItemEligibilityPreviewAsync($marketplace_id, $asin, $program)
     {
-        return $this->getItemEligibilityPreviewAsyncWithHttpInfo($marketplace_id, $asin)
+        return $this->getItemEligibilityPreviewAsyncWithHttpInfo($marketplace_id, $asin, $program)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -133,9 +133,9 @@ class FbaInboundEligibilityApi
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getItemEligibilityPreviewAsyncWithHttpInfo($marketplace_id, $asin)
+    public function getItemEligibilityPreviewAsyncWithHttpInfo($marketplace_id, $asin, $program)
     {
-        $request = $this->getItemEligibilityPreviewRequest($marketplace_id, $asin);
+        $request = $this->getItemEligibilityPreviewRequest($marketplace_id, $asin, $program);
 
         return $this->sendRequestAsync($request, GetItemEligibilityPreviewResponse::class);
     }
@@ -150,7 +150,7 @@ class FbaInboundEligibilityApi
      *
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getItemEligibilityPreviewRequest($marketplace_id, $asin)
+    protected function getItemEligibilityPreviewRequest($marketplace_id, $asin, $program)
     {
         // verify the required parameter 'marketplace_id' is set
         if (null === $marketplace_id || (is_array($marketplace_id) && 0 === count($marketplace_id))) {
@@ -159,6 +159,10 @@ class FbaInboundEligibilityApi
         // verify the required parameter 'asin' is set
         if (null === $asin || (is_array($asin) && 0 === count($asin))) {
             throw new InvalidArgumentException('Missing the required parameter $asin when calling getItemEligibilityPreview');
+        }
+        // verify the required parameter 'program' is set
+        if (null === $program || (is_array($program) && 0 === count($program))) {
+            throw new InvalidArgumentException('Missing the required parameter $program when calling getItemEligibilityPreview');
         }
 
         $resourcePath = '/fba/inbound/v1/eligibility/itemPreview';
@@ -175,6 +179,10 @@ class FbaInboundEligibilityApi
         // query params
         if (null !== $marketplace_id) {
             $queryParams['MarketplaceId'] = ObjectSerializer::toQueryValue($marketplace_id);
+        }
+        // query params
+        if (null !== $marketplace_id) {
+            $queryParams['program'] = ObjectSerializer::toQueryValue($program);
         }
         
         return $this->generateRequest($multipart, $formParams, $queryParams, $resourcePath, $headerParams, 'GET', $httpBody);
