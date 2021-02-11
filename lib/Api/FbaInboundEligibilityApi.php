@@ -81,7 +81,8 @@ class FbaInboundEligibilityApi
     public function getItemEligibilityPreview($marketplace_id, $asin, $program)
     {
         list($response) = $this->getItemEligibilityPreviewWithHttpInfo($marketplace_id, $asin, $program);
-
+        var_dump($response);
+        die();
         return $response;
     }
 
