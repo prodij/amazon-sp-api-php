@@ -177,7 +177,7 @@ class FbaInboundEligibilityApi
         }
         // query params
         if (null !== $marketplace_id) {
-            $queryParams['MarketplaceId'] = ObjectSerializer::toQueryValue($marketplace_id);
+            $queryParams['marketplaceIds'] = ObjectSerializer::toQueryValue($marketplace_id);
         }
         // query params
         if (null !== $program) {
