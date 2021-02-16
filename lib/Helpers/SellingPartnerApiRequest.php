@@ -102,7 +102,7 @@ trait SellingPartnerApiRequest
     {
         try {
             $options = $this->createHttpClientOption();
-            var_dump($request,$options);
+            dd($request,$options);
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
