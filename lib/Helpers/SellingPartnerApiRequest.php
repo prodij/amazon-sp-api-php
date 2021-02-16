@@ -86,7 +86,8 @@ trait SellingPartnerApiRequest
             $headers,
             $amazonHeader
         );
-        dd($httpBody);
+        $httpBody2 = Utils::jsonEncode($httpBody);
+        dd($httpBody,$httpBody2);
 
         return new Request(
             $method,
