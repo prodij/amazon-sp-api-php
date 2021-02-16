@@ -52,7 +52,7 @@ trait SellingPartnerApiRequest
             $httpBody = $_tempBody;
             // \stdClass has no __toString(), so we should encode it manually
             if ($httpBody instanceof \stdClass && 'application/json' === $headers['Content-Type']) {
-                $httpBody = "******".Utils::jsonEncode($httpBody);
+                $httpBody = Utils::jsonEncode($httpBody);
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -86,8 +86,6 @@ trait SellingPartnerApiRequest
             $headers,
             $amazonHeader
         );
-        $httpBody2 = Utils::jsonEncode($httpBody);
-        dd($httpBody,$httpBody2);
 
         return new Request(
             $method,
@@ -104,12 +102,10 @@ trait SellingPartnerApiRequest
     {
         try {
             $options = $this->createHttpClientOption();
-            dd($request,$options,$request->getBody());
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                //throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null);
-                throw new ApiException("[{$e->getCode()}] {$e->getResponse()->getBody()->getContents()}", $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null);
+                throw new ApiException("[{$e->getCode()}] {$e->getMessage()}", $e->getCode(), $e->getResponse() ? $e->getResponse()->getHeaders() : null, $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null);
             }
             $statusCode = $response->getStatusCode();
 
