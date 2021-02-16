@@ -102,6 +102,7 @@ trait SellingPartnerApiRequest
     {
         try {
             $options = $this->createHttpClientOption();
+            var_dump($request,$options);
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -123,8 +124,8 @@ trait SellingPartnerApiRequest
                     $content = json_decode($content);
                 }
             }
-           var_dump($content);
-           exit();
+//            var_dump($content);
+//            exit();
 
             return [
                 ObjectSerializer::deserialize($content, $returnType, []),
