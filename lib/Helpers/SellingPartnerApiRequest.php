@@ -43,7 +43,7 @@ trait SellingPartnerApiRequest
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                ['application/json']
+                []
             );
         }
         // for model (json/xml)
@@ -52,7 +52,7 @@ trait SellingPartnerApiRequest
             $httpBody = $_tempBody;
             // \stdClass has no __toString(), so we should encode it manually
             if ($httpBody instanceof \stdClass && 'application/json' === $headers['Content-Type']) {
-                $httpBody = Utils::jsonEncode($httpBody);
+                $httpBody = "******".Utils::jsonEncode($httpBody);
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
