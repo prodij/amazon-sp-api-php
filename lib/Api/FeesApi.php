@@ -171,8 +171,6 @@ class FeesApi
                 $resourcePath
             );
         }
-        var_dump($multipart, $formParams, $queryParams, $resourcePath, $headerParams, $httpBody);
-        die();
 
         return $this->generateRequest($multipart, $formParams, $queryParams, $resourcePath, $headerParams, 'POST', $httpBody);
     }
