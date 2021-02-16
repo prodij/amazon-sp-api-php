@@ -42,8 +42,8 @@ trait SellingPartnerApiRequest
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
+                [],
+                ['application/json']
             );
         }
         // for model (json/xml)
