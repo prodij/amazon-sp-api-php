@@ -171,6 +171,7 @@ class FeesApi
                 $resourcePath
             );
         }
+        dd($multipart, $formParams, $queryParams, $resourcePath, $headerParams, $httpBody);
 
         return $this->generateRequest($multipart, $formParams, $queryParams, $resourcePath, $headerParams, 'POST', $httpBody);
     }
